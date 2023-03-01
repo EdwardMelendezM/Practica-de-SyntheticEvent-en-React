@@ -1,16 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function EventOnFocus() {
-  const [isEdit, setIsEdit] = useState(false);
-  const [currentItem, setCurrentItem] = useState("");
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.focus();
-    }
-  }, [isEdit]);
-
   const newValue = {
     id: crypto.randomUUID(),
     text: "-",
@@ -31,7 +21,7 @@ export default function EventOnFocus() {
   const handleOnFocus = (e) => {
     console.log("Hiciste focus");
   };
-  const handleOnBlur = (e) => {
+  const handleOnBlur = () => {
     setIsEdit(false);
   };
   const create = () => {
@@ -58,29 +48,17 @@ export default function EventOnFocus() {
         la tecla Tab.
       </p>
       <div>
-        {data.map((item) =>
-          !isEdit ? (
-            <p
-              key={item.id}
-              onDoubleClick={() => {
-                setIsEdit(true);
-              }}
-            >
-              {item.text}
-            </p>
-          ) : (
-            <input
-              key={item.id}
-              ref={currentItem.id === item.id ? ref : null}
-              type="text"
-              onChange={(e) => handleChange(e, item)}
-              onKeyDown={handleKeyDown}
-              onBlur={handleOnBlur}
-              value={item.text}
-              onFocus={handleOnFocus}
-            />
-          )
-        )}
+        {data.map((item) => (
+          <input
+            key={item.id}
+            type="text"
+            onChange={(e) => handleChange(e, item)}
+            onKeyDown={handleKeyDown}
+            onBlur={handleOnBlur}
+            value={item.text}
+            onFocus={handleOnFocus}
+          />
+        ))}
       </div>
     </div>
   );
