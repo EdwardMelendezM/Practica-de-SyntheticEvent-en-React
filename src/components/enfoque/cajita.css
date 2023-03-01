@@ -1,0 +1,19 @@
+.box {
+  width: 120px;
+  height: 80px;
+  background-color: red;
+  margin: solid 3px #ccc;
+}
+
+.noNotice {
+  animation: moveMove 2s ease-in-out;
+}
+
+@keyframes moveMove {
+  from {
+    transform: translate(0px, 360px);
+  }
+  to {
+    transform: translate(0px, 180px);
+  }
+}
