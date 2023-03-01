@@ -1,0 +1,10 @@
+.boxx {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  transition: all 2s;
+}
+
+.boxx.show {
+  transform: rotate(45deg);
+}
